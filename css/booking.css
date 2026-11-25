@@ -1,0 +1,234 @@
+/* booking.css — стили мастера записи и «Моих записей» */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(10, 20, 35, 0.6);
+}
+.modal[hidden] { display: none; }
+
+.modal__box {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  max-height: 92vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 20px;
+  padding: 32px;
+}
+
+.modal__close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  border: none;
+  background: none;
+  font-size: 1.8rem;
+  line-height: 1;
+  color: #6b7785;
+  cursor: pointer;
+}
+.modal__close:hover { color: #1e3a5f; }
+
+.modal__title {
+  font-family: "Roboto Slab", serif;
+  font-size: 1.3rem;
+  color: #1e3a5f;
+  margin: 0 0 14px;
+}
+.modal__hint { color: #6b7785; font-size: 0.875rem; margin: 0 0 14px; }
+.modal__summary {
+  background: #eef2f6;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 0.875rem;
+  margin: 0 0 18px;
+}
+
+/* индикатор шагов */
+.steps {
+  display: flex;
+  gap: 6px;
+  margin: 0 0 20px;
+  padding: 0;
+  list-style: none;
+}
+.steps li {
+  flex: 1;
+  text-align: center;
+  font-size: 0.75rem;
+  padding: 6px 2px;
+  border-radius: 6px;
+  background: #eef2f6;
+  color: #6b7785;
+}
+.steps .is-current { background: #1e3a5f; color: #fff; }
+.steps .is-done { background: #2eb872; color: #fff; }
+
+/* врачи */
+.doctors { display: flex; flex-direction: column; gap: 10px; }
+.doctor {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+  padding: 12px 14px;
+  border: 1.5px solid #e3e8ee;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+.doctor:hover { border-color: #2eb872; background: #f6fcf9; }
+.doctor strong { color: #1e3a5f; }
+.doctor span { font-size: 0.8rem; color: #6b7785; }
+
+/* дни и время */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.chip {
+  padding: 8px 12px;
+  border: 1.5px solid #e3e8ee;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.chip.is-active { background: #1e3a5f; border-color: #1e3a5f; color: #fff; }
+
+.slots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.slot {
+  padding: 10px 0;
+  border: 1.5px solid #2eb872;
+  border-radius: 8px;
+  background: #fff;
+  color: #1e3a5f;
+  font-weight: 600;
+  cursor: pointer;
+}
+.slot:hover:not(:disabled) { background: #2eb872; color: #fff; }
+.slot:disabled {
+  border-color: #e3e8ee;
+  color: #a7b1bc;
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+
+/* форма, согласие, кнопки */
+.modal__check {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 0.8rem;
+  margin: 4px 0 18px;
+}
+.modal__actions { display: flex; justify-content: space-between; gap: 12px; margin-top: 18px; }
+.modal__actions .btn--primary { flex: 1; }
+
+.btn--ghost {
+  background: #fff;
+  color: #1e3a5f;
+  border: 1.5px solid #cfd8e3;
+}
+.btn--ghost:hover { background: #eef2f6; }
+
+.form-error {
+  background: #fdecec;
+  color: #b3261e;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.875rem;
+  margin: 0 0 14px;
+}
+
+/* успех */
+.success { text-align: center; }
+.success__icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  background: #2eb872;
+  color: #fff;
+  font-size: 1.8rem;
+  line-height: 56px;
+}
+
+/* мои записи */
+.appts { margin-top: 18px; display: flex; flex-direction: column; gap: 10px; }
+.appt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1.5px solid #e3e8ee;
+  border-radius: 8px;
+  font-size: 0.875rem;
+}
+.appt span { color: #6b7785; font-size: 0.8rem; }
+.appt .btn { padding: 8px 14px; }
+
+@media (max-width: 576px) {
+  .modal__box { padding: 24px 18px; }
+  .slots { grid-template-columns: repeat(3, 1fr); }
+  .steps li { font-size: 0.65rem; }
+}
+
+/* кнопки в «Моих записях» */
+.appt__btns { display: flex; gap: 8px; flex-shrink: 0; }
+@media (max-width: 576px) { .appt { flex-direction: column; align-items: flex-start; } }
+
+/* секция «Врачи» */
+.team { background: #fff; }
+#departments { scroll-margin-top: 90px; }
+.chips--center { justify-content: center; margin-bottom: 32px; }
+.doctors-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.doc-card {
+  text-align: center;
+  padding: 28px 20px;
+  border: 1px solid #e3e8ee;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(15, 35, 60, 0.06);
+}
+.doc-card__avatar {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  background: #1e3a5f;
+  color: #fff;
+  font-family: "Roboto Slab", serif;
+  font-size: 1.4rem;
+  line-height: 72px;
+}
+.doc-card__name { font-family: "Roboto Slab", serif; font-size: 1rem; color: #1e3a5f; margin: 0 0 4px; }
+.doc-card__pos { color: #2eb872; font-weight: 600; font-size: 0.875rem; margin: 0 0 8px; }
+.doc-card__meta { color: #6b7785; font-size: 0.8rem; margin: 0 0 16px; }
+.doc-card .btn { width: 100%; }
+@media (max-width: 992px) { .doctors-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 576px) { .doctors-grid { grid-template-columns: 1fr; } }
+
+/* окно «Срочная помощь» */
+.urgent__title { color: #b3261e; }
+.urgent__lead { font-weight: 600; margin: 0 0 12px; }
+.urgent__calls { display: flex; gap: 12px; margin-bottom: 18px; }
+.urgent__btn {
+  flex: 1;
+  background: #b3261e;
+  color: #fff;
+  font-size: 1.4rem;
+  padding: 16px;
+}
+.urgent__btn:hover { background: #8f1d17; }
+.urgent__list { margin: 0 0 18px; padding-left: 20px; font-size: 0.875rem; }
+.urgent__list li { margin-bottom: 4px; list-style: disc; }
+.modal__actions a.btn { flex: 1; }
